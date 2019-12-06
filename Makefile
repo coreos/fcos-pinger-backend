@@ -13,8 +13,11 @@ check:
 build:
 	@go build -o main main.go
 
+run:
+	@./main --debug
+
 test:
 	@go test main_test.go main.go
 
 clean:
-	@rm -f main
+	@rm main

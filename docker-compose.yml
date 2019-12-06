@@ -1,0 +1,16 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    container_name: pinger-mongodb
+    network_mode: host
+    ports:
+      - "27017:27017"
+  backend:
+    build: .
+    container_name: pinger-backend
+    network_mode: host
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
