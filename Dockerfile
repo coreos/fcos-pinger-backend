@@ -8,7 +8,7 @@ ENV GOPATH=$HOME/go \
     PATH=$HOME/go/bin:$PATH
 
 # Install golang
-RUN yum install -y golang curl && \
+RUN yum install -y golang curl git && \
     mkdir -p $GOPATH && \
     yum clean all
 
