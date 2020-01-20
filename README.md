@@ -1,3 +1,6 @@
+# fcos-pinger-backend
+[![Docker Repository on Quay](https://quay.io/repository/zonggen/fcos-pinger-backend/status "Docker Repository on Quay")](https://quay.io/repository/zonggen/fcos-pinger-backend)
+
 ## Description
 
 Backend for Fedora CoreOS Pinger (https://github.com/coreos/fedora-coreos-pinger).
