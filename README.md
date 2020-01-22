@@ -10,6 +10,8 @@ Currently the backend server will only interpret the sent request body as a [`po
 ## Pre-requisites:
  - `podman`: https://podman.io/getting-started/installation.html
  - `podman-compose`: https://github.com/containers/podman-compose
+ - `kompose`: https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/#install-kompose
+ - `oc`: https://www.okd.io/download.html#oc-platforms
 
 ## Docker images used:
  - MongoDB official image from Docker Hub ([link_to_image](https://hub.docker.com/_/mongo))
@@ -25,6 +27,22 @@ $ podman-compose up
 
 ```bash
 $ podman-compose down
+```
+
+## Deploy on OKD
+
+```bash
+# mongodb will try to run as root and modify `/data/db`
+oc adm policy add-scc-to-user anyuid -z default
+# convert to oc config with `kompose`
+kompose --provider openshift --file docker-compose.yml convert
+# create imagestream, deployment, and service
+oc create -f mongodb-deploymentconfig.yaml && \
+oc create -f mongodb-imagestream.yaml && \
+oc create -f mongodb-service.yaml && \
+oc create -f backend-deploymentconfig.yaml && \
+oc create -f backend-imagestream.yaml && \
+oc create -f backend-service.yaml
 ```
 
 ## Networks
