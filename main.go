@@ -58,7 +58,7 @@ var collectionsPtr *collections = nil
 // connect to MongoDB
 func connectMongoDB() *mongo.Client {
 	// Set client options
-	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+	clientOptions := options.Client().ApplyURI("mongodb://mongodb:27017")
 
 	// Connect to MongoDB
 	client, err := mongo.Connect(context.TODO(), clientOptions)

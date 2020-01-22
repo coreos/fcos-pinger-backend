@@ -7,7 +7,7 @@ services:
     ports:
       - "27017:27017"
   backend:
-    image: quay.io/zonggen/fcos-pinger-backend
+    image: quay.io/zonggen/fcos-pinger-backend:latest
     container_name: pinger-backend
     network_mode: host
     ports:
