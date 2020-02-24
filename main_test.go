@@ -307,14 +307,14 @@ func TestDataHandlerSuccess(t *testing.T) {
 			}
 		}
 	}`
-	req, err := http.NewRequest("POST", "/", strings.NewReader(body))
+	req, err := http.NewRequest("POST", "/v1", strings.NewReader(body))
 	req.Header.Set("Content-type", "application/json")
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(dataHandler)
+	handler := http.HandlerFunc(dataHandlerV1)
 
 	handler.ServeHTTP(rr, req)
 	if status := rr.Code; status != http.StatusOK {

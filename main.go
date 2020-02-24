@@ -115,7 +115,7 @@ func logMiddleware(handler http.HandlerFunc) http.HandlerFunc {
 }
 
 // main handler for data collected by pinger
-func dataHandler(w http.ResponseWriter, r *http.Request) {
+func dataHandlerV1(w http.ResponseWriter, r *http.Request) {
 
 	// connect to MongoDB when running test
 	if collectionsPtr == nil {
@@ -238,8 +238,8 @@ func main() {
 		log.Printf("Listening on %s", listenAddress)
 	}
 
-	// Map `/` to our dataHandler and wrap it in the log middleware
-	http.Handle("/", logMiddleware(http.HandlerFunc(dataHandler)))
+	// Map `/v1` to our dataHandlerV1 and wrap it in the log middleware
+	http.Handle("/v1", logMiddleware(http.HandlerFunc(dataHandlerV1)))
 
 	// Run forever on all interfaces on port 5000
 	log.Fatal(http.ListenAndServe(listenAddress, nil))
